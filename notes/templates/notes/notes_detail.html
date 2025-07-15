@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div class="border round">
+    <h1 class="my-5"> {{ note.title }} </h1>
+    <p> {{ note.text }}</p>
+</div>
+<h4 class="my-3">{{note.likes}} likes</h4>
+{% if note.public == True %}
+<h3 class="text-success">This is a public note.</h3>
+{% endif %}
+<form action="{% url 'notes.public' note.id %}" method="post" class="d-inline">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn {% if note.public %}btn-danger{% else %}btn-success{% endif %}">
+        {% if note.public %}
+            Make it private
+        {% else %}
+            Make it public
+        {% endif %}
+    </button>
+</form>
+<form action="{% url 'notes.like' note.id %}" method="post" class="d-inline">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-secondary">Upvote</button>
+</form>
+<a href="{% url 'notes.list' %}"><button class="btn btn-secondary my-5">Back</button></a>
+<a href="{% url 'notes.update' note.id %}"><button class="btn btn-secondary my-5">Edit</button></a>
+<a href="{% url 'notes.delete' note.id %}"><button class="btn btn-danger my-5">Delete</button></a>
+{% endblock %}
