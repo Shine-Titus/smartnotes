@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+myenv/
+
+# Django static/media
+staticfiles/
+media/
+
+# VSCode or PyCharm or IDE junk
+.vscode/
+.idea/
+
+# System
+.DS_Store
+
